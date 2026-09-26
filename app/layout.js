@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "larpcorrupt — OxyEnv",
-  description: "larpcorrupt / OxyEnv tooling by claudmor.",
+  title: "larpcorrupt",
+  description: "Lua and Luau deobfuscation and analysis tooling by larpcorrupt.",
 };
 
 export default function RootLayout({ children }) {
