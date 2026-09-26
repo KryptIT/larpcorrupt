@@ -170,7 +170,7 @@ export default function Home() {
 
       <footer className="footer shell">
         <span>© 2026 LARPCORRUPT</span>
-        <span>POWERED BY BAD IDEAS & GOOD DEBUGGERS</span>
+        <span>POWERED BY BAD IDEAS &amp; GOOD DEBUGGERS</span>
         <button onClick={toggleAudio}>{muted ? "AUDIO: OFF" : "AUDIO: ON"}</button>
       </footer>
 
