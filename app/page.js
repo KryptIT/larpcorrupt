@@ -58,7 +58,7 @@ export default function Home() {
 
       {!entered && (
         <button className="enter" onClick={enter}>
-          <img src="/avatar.png" alt="" />
+          <img src="/avatar.svg" alt="" />
           <strong>larpcorrupt</strong>
           <span>click to enter</span>
         </button>
@@ -67,7 +67,7 @@ export default function Home() {
       <div className="wrap">
         <header>
           <a className="me" href="#top" aria-label="larpcorrupt home">
-            <img src="/avatar.png" alt="larpcorrupt" />
+            <img src="/avatar.svg" alt="larpcorrupt" />
             <span>larpcorrupt</span>
           </a>
 
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
 
           <div className="heroPfp">
-            <img src="/avatar.png" alt="larpcorrupt profile picture" />
+            <img src="/avatar.svg" alt="larpcorrupt profile picture" />
           </div>
         </section>
 
