@@ -1,50 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const supported = [
-  ["JNKIE", "loader / delivery analysis"],
-  ["wYnFuscate", "supported"],
-  ["IronBrew 1", "VM / bytecode"],
-  ["IronBrew 2", "VM / bytecode"],
-  ["IronBrew 3", "VM / bytecode"],
-  ["Luraph v15", "devirtualization"],
-  ["Luraph v14.9", "legacy"],
-  ["Luraph v14.8", "legacy"],
-  ["Luraph v14.7", "legacy"],
-  ["Centurion", "supported"],
-  ["WeAreDevs", "supported"],
-  ["Prometheus", "supported"],
+  "Jnkie",
+  "wYnFuscate",
+  "IronBrew 1",
+  "IronBrew 2",
+  "IronBrew 3",
+  "Luraph v15",
+  "Luraph v14.9",
+  "Luraph v14.8",
+  "Luraph v14.7",
+  "Centurion",
+  "WeAreDevs",
+  "Prometheus",
 ];
 
 export default function Home() {
   const audioRef = useRef(null);
   const [entered, setEntered] = useState(false);
   const [muted, setMuted] = useState(false);
-  const [clock, setClock] = useState("00:00:00");
-
-  useEffect(() => {
-    const update = () => {
-      setClock(
-        new Intl.DateTimeFormat("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        }).format(new Date())
-      );
-    };
-    update();
-    const timer = setInterval(update, 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const enter = async () => {
     setEntered(true);
     const audio = audioRef.current;
     if (!audio) return;
-    audio.volume = 0.55;
+
+    audio.volume = 0.5;
     audio.loop = true;
+
     try {
       await audio.play();
     } catch {}
@@ -53,134 +38,107 @@ export default function Home() {
   const toggleAudio = async () => {
     const audio = audioRef.current;
     if (!audio) return;
+
     if (audio.paused) {
       try {
-        await audio.play();
         audio.muted = false;
+        await audio.play();
         setMuted(false);
       } catch {}
       return;
     }
+
     audio.muted = !audio.muted;
     setMuted(audio.muted);
   };
 
   return (
-    <main className="site">
+    <main>
       <audio ref={audioRef} src="/Fr3sh.mp3" preload="auto" loop />
 
       {!entered && (
-        <button className="gate" onClick={enter} aria-label="Enter larpcorrupt">
-          <span className="gateNoise" />
-          <span className="gateIndex">[ 001 ]</span>
-          <span className="gateTitle" data-text="LARPCORRUPT">LARPCORRUPT</span>
-          <span className="gateLine">click anywhere to enter</span>
-          <span className="gateSub">audio enabled · FR3SH</span>
+        <button className="enter" onClick={enter}>
+          <img src="/avatar.png" alt="" />
+          <strong>larpcorrupt</strong>
+          <span>click to enter</span>
         </button>
       )}
 
-      <div className="grain" />
-      <div className="scanlines" />
-      <div className="orb orbOne" />
-      <div className="orb orbTwo" />
+      <div className="wrap">
+        <header>
+          <a className="me" href="#top" aria-label="larpcorrupt home">
+            <img src="/avatar.png" alt="larpcorrupt" />
+            <span>larpcorrupt</span>
+          </a>
 
-      <nav className="nav shell">
-        <a className="brand" href="#top">
-          <span className="brandMark">L/</span>
-          <span>larpcorrupt</span>
-        </a>
-        <div className="navMeta">
-          <span>{clock}</span>
-          <span className="status"><i /> ONLINE</span>
-        </div>
-      </nav>
-
-      <section className="hero shell" id="top">
-        <div className="heroTopline">
-          <span>OXYENV / CLAUDMOR</span>
-          <span>DEOBFUSCATION · ANALYSIS · LUAU</span>
-        </div>
-
-        <h1>
-          BREAK THE
-          <span className="outline"> STATIC.</span>
-        </h1>
-
-        <div className="heroLower">
-          <p>
-            tooling for hostile Lua/Luau transforms, virtual machines,
-            loaders and deliberately unreadable code.
-          </p>
-          <div className="heroActions">
-            <a className="primary" href="https://dsc.gg/oxyenv" target="_blank" rel="noreferrer">
-              JOIN OXYENV ↗
+          <nav>
+            <a href="#supported">supported</a>
+            <a href="https://github.com/KryptIT/larpcorrupt" target="_blank" rel="noreferrer">
+              github
             </a>
-            <a className="ghost" href="https://github.com/KryptIT/larpcorrupt" target="_blank" rel="noreferrer">
-              GITHUB ↗
+            <a href="https://dsc.gg/oxyenv" target="_blank" rel="noreferrer">
+              oxyenv
             </a>
-          </div>
-        </div>
-      </section>
+          </nav>
+        </header>
 
-      <section className="marquee" aria-hidden="true">
-        <div>
-          LARPCORRUPT ◆ OXYENV ◆ CLAUDMOR ◆ LUAU ◆ DEOBFUSCATION ◆ VM LIFTING ◆ LARPCORRUPT ◆ OXYENV ◆ CLAUDMOR ◆
-        </div>
-      </section>
-
-      <section className="support shell" id="support">
-        <div className="sectionHead">
+        <section className="hero" id="top">
           <div>
-            <span className="eyebrow">[ COMPATIBILITY ]</span>
-            <h2>SUPPORTED<br />TARGETS</h2>
+            <p className="kicker">lua / luau tooling</p>
+            <h1>larpcorrupt</h1>
+            <p className="intro">
+              I build deobfuscation and analysis tooling for Lua and Luau.
+              OxyEnv lives at <a href="https://dsc.gg/oxyenv">dsc.gg/oxyenv</a>.
+            </p>
           </div>
-          <p>
-            a moving target list. coverage ranges from loaders and static
-            transforms to VM lifting and devirtualization.
-          </p>
-        </div>
 
-        <div className="grid">
-          {supported.map(([name, note], index) => (
-            <article className="card" key={name}>
-              <span className="cardNo">{String(index + 1).padStart(2, "0")}</span>
-              <h3>{name}</h3>
-              <p>{note}</p>
-              <span className="cardStatus">SUPPORTED</span>
-            </article>
-          ))}
-        </div>
-      </section>
+          <div className="heroPfp">
+            <img src="/avatar.png" alt="larpcorrupt profile picture" />
+          </div>
+        </section>
 
-      <section className="identity shell">
-        <div className="identityLabel">// identity</div>
-        <div className="identityMain">
-          <h2>larpcorrupt</h2>
-          <p>
-            built around practical reverse engineering, automation and
-            deobfuscation workflows. no glossy corporate nonsense.
-          </p>
-        </div>
-        <div className="identitySide">
-          <div><span>alias</span><b>claudmor</b></div>
-          <div><span>community</span><b>OxyEnv</b></div>
-          <div><span>discord</span><b>dsc.gg/oxyenv</b></div>
-        </div>
-      </section>
+        <section className="supported" id="supported">
+          <div className="sectionTitle">
+            <span>01</span>
+            <h2>supported</h2>
+          </div>
 
-      <footer className="footer shell">
-        <span>© 2026 LARPCORRUPT</span>
-        <span>POWERED BY BAD IDEAS &amp; GOOD DEBUGGERS</span>
-        <button onClick={toggleAudio}>{muted ? "AUDIO: OFF" : "AUDIO: ON"}</button>
-      </footer>
+          <div className="list">
+            {supported.map((name, index) => (
+              <div className="row" key={name}>
+                <span className="index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="name">{name}</span>
+                <span className="state">supported</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
-      {entered && (
-        <button className="audioHud" onClick={toggleAudio}>
-          <span className="bars"><i /><i /><i /><i /></span>
-          <span>FR3SH</span>
-          <b>{muted ? "MUTED" : "PLAYING"}</b>
-        </button>
-      )}
+        <section className="links">
+          <div className="sectionTitle">
+            <span>02</span>
+            <h2>links</h2>
+          </div>
+
+          <div className="linkGrid">
+            <a href="https://dsc.gg/oxyenv" target="_blank" rel="noreferrer">
+              <span>discord</span>
+              <strong>dsc.gg/oxyenv ↗</strong>
+            </a>
+            <a href="https://github.com/KryptIT/larpcorrupt" target="_blank" rel="noreferrer">
+              <span>github</span>
+              <strong>KryptIT/larpcorrupt ↗</strong>
+            </a>
+          </div>
+        </section>
+
+        <footer>
+          <span>larpcorrupt</span>
+          <button onClick={toggleAudio}>
+            music {muted ? "off" : "on"}
+          </button>
+        </footer>
+      </div>
     </main>
   );
 }
