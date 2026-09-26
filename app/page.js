@@ -72,6 +72,7 @@ export default function Home() {
           </a>
 
           <nav>
+            <a href="#news">news</a>
             <a href="#supported">supported</a>
             <a href="https://github.com/KryptIT/larpcorrupt" target="_blank" rel="noreferrer">
               github
@@ -97,9 +98,42 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="supported" id="supported">
+        <section className="news" id="news">
           <div className="sectionTitle">
             <span>01</span>
+            <h2>news</h2>
+          </div>
+
+          <article className="newsCard">
+            <div className="newsMeta">
+              <span>26.09.2026</span>
+              <span>account termination</span>
+            </div>
+
+            <h3>Justice for larpcorrupt</h3>
+
+            <p>
+              I was terminated on both of my accounts while working on and releasing
+              Luraph v14.x deobfuscation research and tooling, including support for
+              v14.7, v14.8, and v14.9.
+            </p>
+
+            <p>
+              I believe reports connected to MemCorrupt contributed to the
+              terminations, but that has not been independently verified. I am
+              appealing the decisions and asking for the accounts to be reviewed
+              and restored.
+            </p>
+
+            <strong className="justice">
+              JUSTICE FOR LARPCORRUPT — UNTERMINATE LARPCORRUPT!
+            </strong>
+          </article>
+        </section>
+
+        <section className="supported" id="supported">
+          <div className="sectionTitle">
+            <span>02</span>
             <h2>supported</h2>
           </div>
 
@@ -116,7 +150,7 @@ export default function Home() {
 
         <section className="links">
           <div className="sectionTitle">
-            <span>02</span>
+            <span>03</span>
             <h2>links</h2>
           </div>
 
